@@ -9,7 +9,7 @@
 <body>
 <P>欢迎使用电商平台管理系统</P>
 
-<a href="login.jsp" >登录</a>
+<a href="index.jsp" >登录</a>
 <br/>
 <br/>
   

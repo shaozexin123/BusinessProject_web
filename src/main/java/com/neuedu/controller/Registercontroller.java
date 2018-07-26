@@ -53,14 +53,14 @@ public class Registercontroller extends HttpServlet {
 			e.printStackTrace();
 		}
 		if(result) {
-			System.out.println("×¢²á³É¹¦");
-			req.getRequestDispatcher("login.jsp").forward(req, resp);
+			System.out.println("×¢ï¿½ï¿½É¹ï¿½");
+			req.getRequestDispatcher("index.jsp").forward(req, resp);
 		}else {
-			System.out.println("×¢²áÊ§°Ü");
+			System.out.println("×¢ï¿½ï¿½Ê§ï¿½ï¿½");
 			req.getRequestDispatcher("failzhuce.jsp").forward(req, resp);
 		}
 		}else {
-			System.out.println("×¢²áÊ§°Ü");
+			System.out.println("×¢ï¿½ï¿½Ê§ï¿½ï¿½");
 			req.getRequestDispatcher("failzhuce.jsp").forward(req, resp);
 		}
 		

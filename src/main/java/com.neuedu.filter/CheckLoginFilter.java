@@ -59,8 +59,8 @@ public class CheckLoginFilter implements Filter {
 			
 		}
 		else {
-			//req.getRequestDispatcher("login.jsp").forward(req, resp);
-			resp.sendRedirect("http:/BusinessProject_web/login.jsp");
+			//req.getRequestDispatcher("index.jsp").forward(req, resp);
+			resp.sendRedirect("http:/BusinessProject_web/index.jsp");
 		}
 		
 	}

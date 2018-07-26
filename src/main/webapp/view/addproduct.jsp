@@ -35,6 +35,10 @@
   	<td>商品库存</td>
   	<td><input type="text" name="stock"/></td>
   </tr>
+      <tr>
+          <td>商品类别id</td>
+          <td><input type="text" name="categoryid"/></td>
+      </tr>
   <tr>
   	<td><input type="submit" value="添加商品"/></td>
   	</tr>

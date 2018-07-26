@@ -30,6 +30,7 @@ public class ProductController extends HttpServlet{
 		//req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		String operation=req.getParameter("operation");
+		System.out.println("========================");
 		if(operation!=null&&!operation.equals("")) {
 			if(operation.equals("1")) {
 				addProduct(req,resp);
@@ -64,9 +65,11 @@ public class ProductController extends HttpServlet{
 		String rule= req.getParameter("prule");
 		double price=0.0;
 		int stock=0;
+		int categoryid=0;
 		boolean result=false;
 		try {
 			price=Double.parseDouble(req.getParameter("price"));
+			categoryid=Integer.parseInt(req.getParameter("categoryid"));
 			stock=Integer.parseInt(req.getParameter("stock"));
 			product.setDesc(desc);
 			product.setImage(image);
@@ -74,6 +77,7 @@ public class ProductController extends HttpServlet{
 			product.setPrice(price);
 			product.setRule(rule);
 			product.setStock(stock);
+			product.setCategoryid(categoryid);
 			result= addProduct(product);
 		}
 		catch(NumberFormatException e) {
@@ -135,11 +139,13 @@ public class ProductController extends HttpServlet{
 		String rule= req.getParameter("prule");
 		double price=0.0;
 		int stock=0;
+		int categoryid=0;
 		boolean result=false;
 		try {
 			price=Double.parseDouble(req.getParameter("price"));
 			stock=Integer.parseInt(req.getParameter("stock"));
 			int id=Integer.parseInt(req.getParameter("id"));
+			categoryid=Integer.parseInt(req.getParameter("categoryid"));
 			product.setId(id);
 			product.setDesc(desc);
 			product.setImage(image);
@@ -147,6 +153,7 @@ public class ProductController extends HttpServlet{
 			product.setPrice(price);
 			product.setRule(rule);
 			product.setStock(stock);
+			product.setCategoryid(categoryid);
 			result= pService.updateProduct(product);
 		}
 		catch(NumberFormatException e) {

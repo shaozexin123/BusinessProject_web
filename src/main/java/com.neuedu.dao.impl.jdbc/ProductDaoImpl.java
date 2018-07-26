@@ -28,7 +28,7 @@ public class ProductDaoImpl implements ProductDao {
 		try {
 			conn=DBUtils.getConnection();
 			
-			String  sql="insert into product(name,pdesc,price,rule,image,stock) values (?,?,?,?,?,?)";
+			String  sql="insert into product(name,pdesc,price,rule,image,stock,categoryid) values (?,?,?,?,?,?,?)";
 			st=conn.prepareStatement(sql);
 			//Õ¼Î»·û¸³Öµ
 			st.setString(1, product.getName());
@@ -37,6 +37,7 @@ public class ProductDaoImpl implements ProductDao {
 			st.setString(4, product.getRule());
 			st.setString(5, product.getImage());
 			st.setInt(6, product.getStock());
+			st.setInt(7, product.getCategoryid());
 			System.out.println(sql);
 			st.execute();
 			return true;
@@ -68,11 +69,11 @@ public class ProductDaoImpl implements ProductDao {
 		try {
 			conn=DBUtils.getConnection();
 			
-			String  sql="select id,name,pdesc,price,rule ,image,stock from  product";
+			String  sql="select id,name,pdesc,price,rule ,image,stock,categoryid from  product";
 			st=conn.prepareStatement(sql);
 			System.out.println(sql);
 			ResultSet rs=st.executeQuery();
-			while(rs.next()) {
+			 while(rs.next()) {
 			 int  id= rs.getInt("id");	
 			 String  name=rs.getString("name");
 			 String pdesc=rs.getString("pdesc");
@@ -80,8 +81,8 @@ public class ProductDaoImpl implements ProductDao {
 			 String rule=rs.getString("rule");
 			 String  image=rs.getString("image");
 			 int stock=rs.getInt("stock");
-			 
-			 Product product=new Product(id,name,pdesc,price,rule,image,stock);
+			int	categoryid=rs.getInt("categoryid");
+			 Product product=new Product(id,name,pdesc,price,rule,image,stock,categoryid);
 			 
 			 products.add(product);
 			 
@@ -148,7 +149,7 @@ public class ProductDaoImpl implements ProductDao {
 		PreparedStatement st=null;
 		try {
 			conn=DBUtils.getConnection();
-			String  sql="update product set name=?,pdesc=?,price=?,rule=?,image=?,stock=? where id=?";
+			String  sql="update product set name=?,pdesc=?,price=?,rule=?,image=?,stock=?,categoryid=? where id=?";
 			st=conn.prepareStatement(sql);
 			st.setString(1, product.getName());
 			st.setString(2, product.getDesc());
@@ -157,6 +158,7 @@ public class ProductDaoImpl implements ProductDao {
 			st.setString(5, product.getImage());
 			st.setInt(6, product.getStock());
 			st.setInt(7, product.getId());
+            st.setInt(8, product.getCategoryid());
 			System.out.println(sql);
 			st.execute();
 			return true;
@@ -215,7 +217,7 @@ public class ProductDaoImpl implements ProductDao {
 				try {
 					conn=DBUtils.getConnection();
 					
-					String  sql="select id,name,pdesc,price,rule ,image,stock from  product where id=?";
+					String  sql="select id,name,pdesc,price,rule ,image,stock,categoryid from  product where id=?";
 					st=conn.prepareStatement(sql);
 					st.setInt(1, id);
 					System.out.println(sql);
@@ -231,7 +233,7 @@ public class ProductDaoImpl implements ProductDao {
 						 String rule=rs.getString("rule");
 						 String  image=rs.getString("image");
 						 int stock=rs.getInt("stock");
-						 
+						 int categoryid=rs.getInt("categoryid");
 						 product.setId(_id);
                          product.setName(name);
                          product.setPrice(price);
@@ -239,6 +241,7 @@ public class ProductDaoImpl implements ProductDao {
                          product.setRule(rule);
                          product.setImage(image);
                          product.setStock(stock);
+                         product.setCategoryid(categoryid);
 							}
                          
                          return product;
@@ -281,7 +284,7 @@ public class ProductDaoImpl implements ProductDao {
 			pagemode.setTotalPage(totalpage);
 			
 			}
-			String  sql="select id,name,pdesc,price,rule ,image,stock from  product limit ?,?";
+			String  sql="select id,name,pdesc,price,rule ,image,stock,categoryid from  product limit ?,?";
 			pst=conn.prepareStatement(sql);
 			pst.setInt(1, (pageno-1)*pagesize);
 			pst.setInt(2,pagesize);
@@ -296,8 +299,8 @@ public class ProductDaoImpl implements ProductDao {
 			 String rule=rs.getString("rule");
 			 String  image=rs.getString("image");
 			 int stock=rs.getInt("stock");
-			 
-			 Product product=new Product(id,name,pdesc,price,rule,image,stock);
+			 int categoryid=rs.getInt("categoryid");
+			 Product product=new Product(id,name,pdesc,price,rule,image,stock,categoryid);
 			 
 			 list.add(product);
 			}

@@ -19,7 +19,7 @@ import com.neuedu.service.impl.LoginServiceImpl;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter("/login.jsp")
+@WebFilter("/index.jsp")
 public class LoginFilter implements Filter {
 
     /**

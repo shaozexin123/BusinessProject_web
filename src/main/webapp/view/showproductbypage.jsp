@@ -18,6 +18,7 @@
             <th>商品规格</th>
             <th>商品图片</th>
             <th>商品库存</th>
+			<th>商品类别id</th>
             <th>商品操作</th>
 		</tr>
 		<c:forEach items="${pagemode.data}" var="product">
@@ -29,6 +30,7 @@
             <td>${product.rule}</td>
             <td>${product.image}</td>
             <td>${product.stock}</td>
+			<td>${product.categoryid}</td>
             <td><a href="product?operation=4&id=${product.id}">删除</a> <a href="product?operation=5&id=${product.id}">修改</a> 
             <a href="cart?operation=6&id=${product.id}" >添加到购物车</a></td>
 		</tr>
