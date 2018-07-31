@@ -6,10 +6,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
+    <link rel="stylesheet" href="bootstrap.css"/>
 
-	<table align="center">
+</head>
+
+<body>
+<div class="container-fluid"style="background-color: #EBEBEB;height: 800px;">
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <!--<img src="img/华为logo.png">-->
+        </div>
+        <div class="col-xs-8 col-xs-push-1 col-sm-8 col-sm-push-1 col-md-8 col-lg-4 col-lg-push-1">
+            <p class="text-center">
+            <h1>小米商城后台网站</h1></p>
+        </div>
+
+    </div>
+
+    <div class="row"style="margin-bottom: 30px;">
+        <a href="">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"style="margin-left: 20px;"></span></a>
+        >> <a href="">后台</a>
+        >> <a href="">订单管理</a>
+        >> <a href="">显示订单</a>
+
+    </div>
+<form action="order" method="get">
+	<table align="center" class="table table-bordered">
 		<tr>
             <th>订单id</th>
             <th>订单号</th>
@@ -22,6 +45,7 @@
             <th>支付时间</th>
             <th>创建时间</th>
             <th>修改时间</th>
+            <th>操作</th>
 		</tr>
 		<c:forEach items="${pagemode.data}" var="userorder">
 		<tr>
@@ -51,5 +75,6 @@
 	</c:choose>
 	
 	</c:forEach>
+</form>
 </body>
 </html>

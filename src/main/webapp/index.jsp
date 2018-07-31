@@ -121,6 +121,7 @@
         <div id="login_control" >
             <input  type="submit" id="btn_login" value="登录"  />
         </div>
+        <div><a href="register.jsp">注册</a></div>
     </form>
 </div>
 

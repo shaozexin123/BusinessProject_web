@@ -35,7 +35,7 @@ public class OrderController extends HttpServlet{
 			if(operation.equals("1")) {
 				createOrder(req,resp);
 			}else if(operation.equals("2")) {
-//				findAll(req,resp);
+				findAll(req,resp);
 			}else if(operation.equals("3")) {
 //				updateProduct(req,resp);
 			}else if(operation.equals("4")) {

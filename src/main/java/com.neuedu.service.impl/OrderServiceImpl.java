@@ -9,6 +9,8 @@ import com.neuedu.dao.OrderItemDao;
 import com.neuedu.dao.impl.jdbc.CartDaoImpl;
 import com.neuedu.dao.impl.jdbc.OrderDaoImpl;
 import com.neuedu.dao.impl.jdbc.OrderItemDaoImpl;
+import com.neuedu.dao.impl.mybatis.CartMybatisImpl;
+import com.neuedu.dao.impl.mybatis.OrderMybatisImpl;
 import com.neuedu.entity.Cart;
 import com.neuedu.entity.PageMode;
 import com.neuedu.entity.Product;
@@ -19,8 +21,8 @@ import com.neuedu.utils.Utils;
 
 public class OrderServiceImpl implements OrderService {
 
-	CartDao cartDao=new CartDaoImpl();
-	OrderDao orderDao=new OrderDaoImpl();
+	CartDao cartDao=new CartMybatisImpl();
+	OrderDao orderDao=new OrderMybatisImpl();
 	OrderItemDao orderItemDao=new OrderItemDaoImpl();
 	@Override
 	public boolean createOrder(UserOrder userorder) {

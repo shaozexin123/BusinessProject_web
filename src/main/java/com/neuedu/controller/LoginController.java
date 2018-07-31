@@ -53,7 +53,7 @@ public class LoginController extends HttpServlet {
 //			session.setMaxInactiveInterval(7*24*3600);
 			session.setAttribute("token", token);
 			session.setAttribute("acc", acc);
-			req.getRequestDispatcher("view/home.jsp").forward(req, resp);
+			resp.sendRedirect("http://127.0.0.1:8020/houtai/houtai.html");
 		} else {
 			// µÇÂ¼Ê§°Ü
 			req.getRequestDispatcher("fail.jsp").forward(req, resp);

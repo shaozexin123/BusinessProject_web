@@ -13,7 +13,7 @@ public class Cart  implements Serializable{
 	private static final long serialVersionUID = 5117733379863943502L;
 	private  int id;
 	private  Product  product;
-	private  int productid;
+//	private  int productid;
 	private  int  productNum;//商品数量
 	private  double productprice;
 	private  double totalprice;
@@ -30,35 +30,35 @@ public class Cart  implements Serializable{
 		this.totalprice = totalprice;
 	}
 	
-	public Cart(int id, int productid, int productNum, double productprice, double totalprice) {
-		super();
-		this.id = id;
-		this.productid = productid;
-		this.productNum = productNum;
-		this.productprice = productprice;
-		this.totalprice = totalprice;
-	}
-	public Cart(int id, Product product, int productid, int productNum, double productprice, double totalprice) {
-		super();
-		this.id = id;
-		this.product = product;
-		this.productid = productid;
-		this.productNum = productNum;
-		this.productprice = productprice;
-		this.totalprice = totalprice;
-	}
-	public int getProductid() {
-		return productid;
-	}
-	public void setProductid(int productid) {
-		this.productid = productid;
-	}
-	public Cart(int id, int productid, int productNum) {
-		super();
-		this.id = id;
-		this.productid = productid;
-		this.productNum = productNum;
-	}
+//	public Cart(int id, int productid, int productNum, double productprice, double totalprice) {
+//		super();
+//		this.id = id;
+//		this.productid = productid;
+//		this.productNum = productNum;
+//		this.productprice = productprice;
+//		this.totalprice = totalprice;
+//	}
+//	public Cart(int id, Product product, int productid, int productNum, double productprice, double totalprice) {
+//		super();
+//		this.id = id;
+//		this.product = product;
+//		this.productid = productid;
+//		this.productNum = productNum;
+//		this.productprice = productprice;
+//		this.totalprice = totalprice;
+//	}
+//	public int getProductid() {
+//		return productid;
+//	}
+//	public void setProductid(int productid) {
+//		this.productid = productid;
+//	}
+//	public Cart(int id, int productid, int productNum) {
+//		super();
+//		this.id = id;
+//		this.productid = productid;
+//		this.productNum = productNum;
+//	}
 	public Cart(int id, Product product, int productNum) {
 		super();
 		this.id = id;
@@ -86,10 +86,10 @@ public class Cart  implements Serializable{
 	public void setProductNum(int productNum) {
 		this.productNum = productNum;
 	}
-	@Override
-	public String toString() {
-		return "Cart [id=" + id + ", productid=" + productid + ", productNum=" + productNum + ", productprice=" + productprice + ", totalprice=" + totalprice+ "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Cart [id=" + id + ", productid=" + productid + ", productNum=" + productNum + ", productprice=" + productprice + ", totalprice=" + totalprice+ "]";
+//	}
 	
 	
 	

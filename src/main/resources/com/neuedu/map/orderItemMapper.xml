@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neuedu.entity.UserOrderItem">
+    <insert id="addOrderItems"  parameterType="order"  statementType="PREPARED" useGeneratedKeys="true">
+        insert into userorder(order_no,user_id,shipping_id,payment,payment_type,postage,status,payment_time,create_time,update_time)
+					 values (#{order_no},#{user_id},#{shipping_id},#{payment},#{payment_type},#{postage},#{status},now(),now(),now())
+    </insert>
+    <!--<delete id="deleteUserOrder" parameterType="int">-->
+        <!--delete from userorder where id=#{id}-->
+    <!--</delete>-->
+    <!--<select id="findById" parameterType="int" resultType="order">-->
+        <!--select id, order_no,user_id,shipping_id,payment,payment_type,postage,status,payment_time,create_time,update_time from  userorder where id=#{id}-->
+    <!--</select>-->
+    <!--<select id="findTotalCount" resultType="java.lang.Integer">-->
+        <!--select count(id) from  userorder-->
+    <!--</select>-->
+    <select id="findProductByPage" parameterType="map" resultType="order">
+        select id, order_no,user_id,shipping_id,payment,payment_type,postage,status,payment_time,create_time,update_time from  userorder limit  #{offset},#{pageSize}
+    </select>
+</mapper>

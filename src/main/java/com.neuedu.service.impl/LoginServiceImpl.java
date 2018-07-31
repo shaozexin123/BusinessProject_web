@@ -2,12 +2,13 @@ package com.neuedu.service.impl;
 
 import com.neuedu.dao.ILoginDao;
 import com.neuedu.dao.impl.jdbc.LoginDaoImpl;
+import com.neuedu.dao.impl.mybatis.LoginMybatisImpl;
 import com.neuedu.entity.Account;
 import com.neuedu.service.ILoginService;
 import com.neuedu.utils.MD5Utils;
 
 public class LoginServiceImpl implements ILoginService{
-	ILoginDao loginDao=new LoginDaoImpl();
+	ILoginDao loginDao=new LoginMybatisImpl();
 	
 	
 	public Account  doLogin(String  username,String password) {

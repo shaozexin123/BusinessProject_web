@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neuedu.entity.Account">
+    <select id="findByUserNameAndPassword" parameterType="map" resultType="com.neuedu.entity.Account">
+          select * FROM  account WHERE  username=#{username} AND  password=#{password}
+    </select>
+    <select id="findTokenByAccountid" parameterType="map" resultType="String">
+        select token from  account where accountid=#{accountid}
+    </select>
+
+    <insert id="addAccount"  parameterType="com.neuedu.entity.Account" keyColumn="accountid" keyProperty="accountid" statementType="PREPARED" useGeneratedKeys="true">
+        insert into account(username,password,ip,sex) values (#{username},#{password},#{ip},#{sex})
+    </insert>
+    <update id="addToken" parameterType="map">
+        update account set token=#{token} where accountid=#{accountid}
+    </update>
+    <insert id="addProduct"  parameterType="com.neuedu.entity.Product"  statementType="PREPARED" useGeneratedKeys="true">
+        INSERT into product(name,pdesc,price,rule,image,stock,categoryid) values (#{name},#{desc},#{price},#{rule},#{image},#{stock},#{categoryid})
+    </insert>
+    <select id="findAll" resultType="com.neuedu.entity.Product" >
+        select id,name,pdesc,price,rule ,image,stock,categoryid from  product
+    </select>
+    <update id="updateProduct" parameterType="com.neuedu.entity.Product">
+        update product set name=#{name},pdesc=#{pdesc},price=#{price},rule=#{rule},image=#{image},stock=#{stock},categoryid=#{categoryid} where id=#{id}
+    </update>
+    <delete id="deleteProduct">
+        delete from product where id=#{id}
+    </delete>
+    <select id="findTotalCount" resultType="java.lang.Integer">
+        select count(id) from  product
+    </select>
+    <select id="findProductByPage" parameterType="map" resultType="com.neuedu.entity.Product">
+        select id,name,pdesc,price,rule ,image,stock,categoryid from  product limit #{offset},#{pageSize}
+    </select>
+</mapper>

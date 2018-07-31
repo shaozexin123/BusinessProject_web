@@ -74,10 +74,10 @@ public class CartController extends HttpServlet {
 			ProductController pc=new ProductController();
 			Product product=pc.findProductById(id);
 			double totalprice=productNum*product.getPrice();
-			if(product.getStock()>=productNum) {
-			if(product!=null) {
+			if(true) {
+			if(product!=null&&product.getStock()>=productNum) {
 			cart.setProduct(product);
-			cart.setProductid(product.getId());
+//			cart.setProductid(product.getId());
 			cart.setProductNum(productNum);
 			cart.setProductprice(product.getPrice());
 			cart.setTotalprice(totalprice);
@@ -85,6 +85,15 @@ public class CartController extends HttpServlet {
 			if(result) {
 				System.out.println("商品添加成功");
 			    findAll(req, resp);
+			    product.setStock(product.getStock()-productNum);
+				product.setId(id);
+				product.setDesc(product.getDesc());
+				product.setImage(product.getImage());
+				product.setName(product.getName());
+				product.setPrice(product.getPrice());
+				product.setRule(product.getRule());
+				product.setCategoryid(product.getCategoryid());
+				pc.updateProduct(product);
 			}else {
 				System.out.println("商品添加失败");
 			}
@@ -173,10 +182,10 @@ public class CartController extends HttpServlet {
 		return cartService.getCartNum();
 	};
 	
-	/**修改购物车商品数量
-	 * @param  id  要修改的购物车的Id
-	 * @param  num 修改后的数量
-	 * */
+//	/**修改购物车商品数量
+//	 * @param  id  要修改的购物车的Id
+//	 * @param  num 修改后的数量
+//	 * */
 	public void updataeCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	Cart cart=new Cart();
 //		String name= req.getParameter("pname");
@@ -187,6 +196,7 @@ public class CartController extends HttpServlet {
 //		double price=0.0;
     	int id=0;
 		int productNum=0;
+
 		int productid=0;
 		double productprice=0.0;
 		double totalprice=0.0;
@@ -195,15 +205,16 @@ public class CartController extends HttpServlet {
 //			price=Double.parseDouble(req.getParameter("price"));
 			id=Integer.parseInt(req.getParameter("id"));
 			productNum=Integer.parseInt(req.getParameter("productNum"));
-			productid=Integer.parseInt(req.getParameter("productid"));
-			
+//			productid=Integer.parseInt(req.getParameter("productid"));
+			ProductController pc=new ProductController();
+			Product product=pc.findProductById(id);
 			productprice=Double.parseDouble(req.getParameter("productprice"));
 			System.out.println("productNum="+productNum+"productprice="+req.getParameter("productprice"));
 			totalprice=productprice*productNum;
 			System.out.println("totalprice======"+totalprice);
 			cart.setId(id);
-//			cart.setProduct(product);
-			cart.setProductid(productid);
+			cart.setProduct(product);
+//			cart.setProductid(productid);
 			cart.setProductNum(productNum);
 			cart.setTotalprice(totalprice);
 //			product.setDesc(desc);

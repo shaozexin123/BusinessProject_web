@@ -57,15 +57,15 @@
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <version>2.3</version>
+      <artifactId>log4j-core</artifactId>
+      <version>2.8.2</version>
     </dependency>
-
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>2.3</version>
+      <artifactId>log4j-api</artifactId>
+      <version>2.11.0</version>
     </dependency>
+
 
     <dependency>
       <groupId>mysql</groupId>
@@ -82,6 +82,11 @@
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>1.2.47</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>RELEASE</version>
     </dependency>
   </dependencies>
 

@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neuedu.entity.Cart">
+    <insert id="addCart"  parameterType="cart"  statementType="PREPARED" useGeneratedKeys="true">
+        insert into cart(productid,productnum,productprice,totalprice) values (#{product.id},#{productNum},#{productprice},#{totalprice})
+    </insert>
+<delete id="delectCart" parameterType="int">
+    delete from cart where id=#{id}
+</delete>
+    <update id="updataeCart" parameterType="cart">
+        update cart set productnum=#{productNum},totalprice=#{totalprice} where id=#{id}
+    </update>
+    <update id="updateCart" parameterType="cart">
+        update cart set productnum=#{productNum} where id=#{id}
+    </update>
+    <select id="findById" parameterType="int" resultType="cart">
+select id,productid,productnum,productprice,totalprice from  cart where id=#{id}
+</select>
+    <select id="findTotalCount" resultType="java.lang.Integer">
+        select count(id) from  cart
+    </select>
+    <select id="findProductByPage" parameterType="map" resultType="com.neuedu.entity.Cart">
+        select id,productid,productnum,productprice,totalprice from  cart limit  #{offset},#{pageSize}
+    </select>
+    <resultMap id="cart_product_resultmap" type="com.neuedu.entity.Cart" autoMapping="true">
+        <association property="product" javaType="product" column="productid" autoMapping="true" >
+            <id property="id" column="productid"></id>
+        </association>
+    </resultMap>
+    <select id="findAllCart" resultMap="cart_product_resultmap">
+        select c.id id,c.productid productid,c.productnum productnum,c.productprice productprice,c.totalprice totalprice,p.id id,p.name name,p.pdesc pdesc,p.price price,p.rule rule,p.image image,p.stock stock,p.categoryid categoryid from  cart c
+        LEFT JOIN  product p
+        on p.id=c.productid
+    </select>
+</mapper>

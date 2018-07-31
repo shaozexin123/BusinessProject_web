@@ -131,9 +131,19 @@ public class UserOrder  implements Serializable{
 	public void setUpdate_time(String update_time) {
 		this.update_time = update_time;
 	}
-	
+
+	public UserOrder(long order_no, int user_id, int shipping_id, double payment, int payment_type, int postage, int status) {
+		this.order_no = order_no;
+		this.user_id = user_id;
+		this.shipping_id = shipping_id;
+		this.payment = payment;
+		this.payment_type = payment_type;
+		this.postage = postage;
+		this.status = status;
+	}
+
 	public UserOrder(int id, long order_no, int user_id, int shipping_id, double payment, int payment_type, int postage,
-			int status, String payment_time, String create_time, String update_time) {
+					 int status, String payment_time, String create_time, String update_time) {
 		super();
 		this.id = id;
 		this.order_no = order_no;
