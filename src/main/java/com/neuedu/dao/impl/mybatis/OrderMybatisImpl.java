@@ -66,6 +66,11 @@ public class OrderMybatisImpl implements OrderDao {
         return order;
     }
 
+    @Override
+    public UserOrder findByorder_no(long order_no) {
+        return null;
+    }
+
     public static void main(String[] args) {
         OrderMybatisImpl o=new OrderMybatisImpl();
         UserOrder userOrder=new UserOrder();

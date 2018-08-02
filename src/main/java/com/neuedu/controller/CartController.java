@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSONArray;
+import com.google.gson.Gson;
 import com.neuedu.entity.Cart;
 import com.neuedu.entity.PageMode;
 import com.neuedu.entity.Product;
@@ -26,10 +28,11 @@ public class CartController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		resp.setHeader("Access-Control-Allow-Origin", "*");
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		String operation=req.getParameter("operation");
-		
+		resp.setHeader("Access-Control-Allow-Origin", "*");
 		if(operation!=null&&!operation.equals("")) {
 			if(operation.equals("1")) {
 				
@@ -123,7 +126,8 @@ public class CartController extends HttpServlet {
 	    	 System.out.println(id);
 	    		 if(cartService.deleteCart(id)) {
 	    			 System.out.println("商品删除成功");
-	    			 findAll(req, resp);
+//	    			 findAll(req, resp);
+					 resp.sendRedirect("http://127.0.0.1:8020/%E5%B0%8F%E7%B1%B3%E5%89%8D%E5%8F%B0/xiaomiShop/gouwuche.html");
 	    		 }else {
 	    			 System.out.println("商品删除失败");
 	    		 }
@@ -157,15 +161,19 @@ public class CartController extends HttpServlet {
 		int _pageno=1;
 		int _pageNum=5;
 		try {
-			if(pageno!=null&pageNum!=null) {
-			_pageno=Integer.parseInt(pageno);
-			_pageNum=Integer.parseInt(pageNum);
-			}
-//			int id=Integer.parseInt(req.getParameter("id"));
-			PageMode<Cart> pagemode=cartService.findCartByPage(_pageno,_pageNum);
-			//List<Product> products= pService.findAll();
-			req.setAttribute("pagemode", pagemode);
-			req.getRequestDispatcher("showcart.jsp").forward(req, resp);
+//			分页显示
+//			if(pageno!=null&pageNum!=null) {
+//			_pageno=Integer.parseInt(pageno);
+//			_pageNum=Integer.parseInt(pageNum);
+//			}
+//			PageMode<Cart> pagemode=cartService.findCartByPage(_pageno,_pageNum);
+//			req.setAttribute("pagemode", pagemode);
+            List<Cart> carts=cartService.findAllCart();
+			Gson gson=new Gson();
+			String json=gson.toJson(carts);
+			resp.getWriter().append("success_jsonpCallback("+json+")");
+
+//			System.out.println(json);
 		}
 		catch(NumberFormatException e) {
 			e.printStackTrace();
@@ -225,14 +233,14 @@ public class CartController extends HttpServlet {
 //			product.setStock(stock);
 //			result= pService.updateProduct(product);
 			result= cartService.updataeCart(cart);
-			System.out.println(cart.getTotalprice()+"++++++++++++++");
 		}
 		catch(NumberFormatException e) {
 			e.printStackTrace();
 		}
 		if(result) {
 			System.out.println("购物车修改成功");
-			findAll(req, resp);
+//			findAll(req, resp);
+			resp.sendRedirect("http://127.0.0.1:8020/%E5%B0%8F%E7%B1%B3%E5%89%8D%E5%8F%B0/xiaomiShop/gouwuche.html");
 		}else {
 			System.out.println("购物车修改失败");
 		}

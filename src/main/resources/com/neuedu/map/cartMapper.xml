@@ -21,8 +21,10 @@ select id,productid,productnum,productprice,totalprice from  cart where id=#{id}
     <select id="findTotalCount" resultType="java.lang.Integer">
         select count(id) from  cart
     </select>
-    <select id="findProductByPage" parameterType="map" resultType="com.neuedu.entity.Cart">
-        select id,productid,productnum,productprice,totalprice from  cart limit  #{offset},#{pageSize}
+    <select id="findProductByPage" parameterType="map" resultMap="cart_product_resultmap">
+        select c.id id,c.productid productid,c.productnum productnum,c.productprice productprice,c.totalprice totalprice,p.id id,p.name name,p.pdesc pdesc,p.price price,p.rule rule,p.image image,p.stock stock,p.categoryid categoryid from  cart c
+        LEFT JOIN  product p
+        on p.id=c.productid limit  #{offset},#{pageSize}
     </select>
     <resultMap id="cart_product_resultmap" type="com.neuedu.entity.Cart" autoMapping="true">
         <association property="product" javaType="product" column="productid" autoMapping="true" >

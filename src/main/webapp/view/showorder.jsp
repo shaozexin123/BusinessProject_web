@@ -73,7 +73,7 @@
 	<a  href="order?operation=2&pageno=${pageno}&pagesize=5">${pageno}</a>
 	</c:when>
 	</c:choose>
-	
+
 	</c:forEach>
 </form>
 </body>

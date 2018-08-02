@@ -212,6 +212,11 @@ public class OrderDaoImpl implements OrderDao {
 		return userorder;
 	}
 
+	@Override
+	public UserOrder findByorder_no(long order_no) {
+		return null;
+	}
+
 
 }
 

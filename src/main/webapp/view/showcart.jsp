@@ -6,26 +6,72 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="../cs/gouwuche.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.css" />
+    <%--<style>--%>
+        <%--.th1{--%>
+            <%--padding: 8px;--%>
+            <%--line-height: 1.42857143;--%>
+            <%--vertical-align: center;--%>
+            <%----%>
+        <%--}--%>
+    <%--</style>--%>
 </head>
+
 <body>
-	<table align="center">
+<div id="zhuce">
+    <div id="top">
+        <div id="top_logo">
+            <img src="img/logo.png" style="margin-top: 20px;" />
+        </div>
+        <div id="top_center">
+					<span style="font-size: 30px;">
+						我的购物车
+					</span>
+        </div>
+        <div id="top_center_1">
+            <span>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</span>
+        </div>
+        <div id="top_right">
+            <ul style="list-style: none;">
+                <li>
+                    <a href="gerenzhongxin.html">个人中心</a>
+                </li>
+                <li>
+                    <a href="login.html">退出登录</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="bottom_2">
+<form action="cart" method="get">
+	<table align="center" class="table table-bordered">
 		<tr>
-			<th>购物信息id</th>
-			<th>商品id</th>
-			<th>商品数量</th>
-			<th>商品单价</th>
-			<th>商品总价</th>
-			<th>购物车操作</th>
+            <th class="th1">
+                    全选
+            </th>
+			<th  class="th1">购物信息id</th>
+			<th class="th1">商品id</th>
+			<th class="th1">商品数量</th>
+			<th class="th1">商品单价</th>
+			<th class="th1">商品总价</th>
+			<th class="th1">购物车操作</th>
 		</tr>
 		<c:forEach items="${pagemode.data}" var="cart">
 			<tr>
+                <td>
+                    <form style="text-align: center;">
+                        <input style="display: inline-block; " type="checkbox" />
+                        <span class="span"></span>
+                    </form>
+                </td>
 				<td>${cart.id}</td>
-				<td>${cart.productid}</td>
+				<td>${cart.getProduct().getId()}</td>
 				<td>${cart.productNum}</td>
 				<td>${cart.productprice}</td>
 				<td>${cart.totalprice}</td>
-				<td><a href="cart?operation=4&id=${cart.id}">删除</a> 
-				    <a href="cart?operation=5&id=${cart.id}">修改</a> 
+				<td><a href="cart?operation=4&id=${cart.id}">删除</a>
+				    <a href="cart?operation=5&id=${cart.id}">修改</a>
 			        <a href="order?operation=1&id=${cart.id}&totalprice=${cart.totalprice}">下单</a>
 					</td>
 			</tr>
@@ -43,5 +89,21 @@
 		</c:choose>
 
 	</c:forEach>
+<%--</form>--%>
+    </div>
+    <div id="bottom_3">
+        <div id="bottom_3_1">
+            <a href="index.html">继续购物</a>
+        </div>
+        <div id="bottom_3_2">
+            <span>合计：899元</span>
+        </div>
+        <div id="bottom_3_3">
+            <form action="">
+                <a href="jiesuan.html"><input type="button" value="去结算" /></a>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
+<script src="../js/jquery.js"></script>

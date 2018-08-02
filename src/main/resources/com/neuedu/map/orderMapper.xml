@@ -10,12 +10,6 @@
     <delete id="deleteUserOrder" parameterType="int">
         delete from userorder where id=#{id}
     </delete>
-    <!--<update id="updataeCart" parameterType="cart">-->
-        <!--update cart set productnum=#{productNum},totalprice=#{totalprice} where id=#{id}-->
-    <!--</update>-->
-    <!--<update id="updateCart" parameterType="cart">-->
-        <!--update cart set productnum=#{productNum} where id=#{id}-->
-    <!--</update>-->
     <select id="findById" parameterType="int" resultType="order">
         select id, order_no,user_id,shipping_id,payment,payment_type,postage,status,payment_time,create_time,update_time from  userorder where id=#{id}
     </select>
@@ -25,4 +19,13 @@
     <select id="findProductByPage" parameterType="map" resultType="order">
         select id, order_no,user_id,shipping_id,payment,payment_type,postage,status,payment_time,create_time,update_time from  userorder limit  #{offset},#{pageSize}
     </select>
+    <resultMap id="findByorder_nomap" type="order" autoMapping="true">
+
+    </resultMap>
+    <!--<select id="findByorder_no" resultMap="findByorder_nomap" parameterType="java.lang.Long">-->
+        <!--select uo.id, uo.order_no,uo.user_id,uo.shipping_id,uo.payment,uo.payment_type,uo.postage,uo.status,uo.payment_time,uo.create_time,uo.update_time ,ui.id,ui.order_no,ui.user_id,ui.productid,ui.product_name,ui.product_image,ui.current_unit_price,ui.quantity,ui.total_price,create_time-->
+        <!--from userorder uo-->
+        <!--left join userorderitem ui-->
+        <!--on ui.order_no=uo.order_no-->
+    <!--</select>-->
 </mapper>

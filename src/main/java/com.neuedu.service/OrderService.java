@@ -13,7 +13,7 @@ public interface OrderService {
 	 * �û��µ�
 	 * */
 	boolean  createOrder(UserOrder userorder);
-	
+	boolean  createOrder();
 	/**
 	 * 
 	 * ���ɶ������order_no

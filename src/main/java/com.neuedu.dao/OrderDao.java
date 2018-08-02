@@ -25,4 +25,5 @@ public interface OrderDao {
 	
 	/**����id��ѯ����*/
 	UserOrder  findById(int id);
+	UserOrder findByorder_no(long order_no);
 }

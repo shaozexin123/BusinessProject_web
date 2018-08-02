@@ -115,12 +115,12 @@ public class CartMybatisImpl implements CartDao {
 
     public static void main(String[] args) {
         CartMybatisImpl c=new CartMybatisImpl();
-//        System.out.println(c.deleteCart(23));
         Cart cart=c.findById(26);
         cart.setProductNum(2);
         cart.setTotalprice(20.0);
         System.out.println(c.findAllCart());
-        String json = JSONArray.toJSONString(c.findAllCart());
-        System.out.println(json);
+        String json = JSONArray.toJSONString(c.findCartByPage(1,4));
+       System.out.println(json);
+
     }
 }

@@ -57,6 +57,7 @@ public class OrderController extends HttpServlet{
 		doGet(req, resp);
 	}
 	public  void  createOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
 		UserOrder userorder=new UserOrder();
 		HttpSession session=req.getSession();
 		Object accobj=session.getAttribute("acc");
@@ -71,14 +72,16 @@ public class OrderController extends HttpServlet{
 		int status=0;
 		boolean result=false;
 		try {
-			id=Integer.parseInt(req.getParameter("id"));
+//			id=Integer.parseInt(req.getParameter("id"));
 			ProductController pc=new ProductController();
-			Product product=pc.findProductById(id);
+//			Product product=pc.findProductById(id);
 			payment=Double.parseDouble(req.getParameter("totalprice"));
 			if(accobj!=null) {
 				Account acc=(Account)accobj;
 			    user_id=acc.getAccountId();
 			}
+			System.out.println(user_id);
+
 			userorder.setOrder_no(order_no);
 			userorder.setUser_id(user_id);
 			userorder.setShipping_id(shipping_id);
@@ -86,6 +89,7 @@ public class OrderController extends HttpServlet{
 			userorder.setPayment_type(payment_type);
 			userorder.setPostage(postage);
 			userorder.setStatus(status);
+			System.out.println(userorder);
 			result=createOrder(userorder);
 			if(result) {
 				System.out.println("下单成功");

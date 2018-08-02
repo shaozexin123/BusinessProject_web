@@ -12,7 +12,7 @@
 <form action="cart" method="post">
   <input type="hidden" name="operation" value="3"/>
   <input type="hidden" name="id" value="${cart.id}"/>
-  <input type="hidden" name="productid" value="${cart.productid}"/>
+  <input type="hidden" name="productid" value="${cart.getProduct().getId()}"/>
   <input type="hidden" name="productprice" value="${cart.productprice}"/>
   <table align="center">
   <tr>
