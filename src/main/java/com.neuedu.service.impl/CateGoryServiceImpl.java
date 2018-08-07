@@ -8,10 +8,21 @@ import com.neuedu.dao.impl.mybatis.CategoryMybatisImpl;
 import com.neuedu.entity.CateGory;
 import com.neuedu.entity.PageMode;
 import com.neuedu.service.CateGoryService;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
+@Service("cService")
+@Scope("singleton")
 public class CateGoryServiceImpl implements CateGoryService {
+@Resource(name = "categoryMybatisImpl")
+	CateGoryDao categoryDao;
 
-	CateGoryDao categoryDao=new CategoryMybatisImpl();
+	public void setCategoryDao(CateGoryDao categoryDao) {
+		this.categoryDao = categoryDao;
+	}
+
 	@Override
 	public boolean addCateGory(CateGory category) {
 		// TODO Auto-generated method stub

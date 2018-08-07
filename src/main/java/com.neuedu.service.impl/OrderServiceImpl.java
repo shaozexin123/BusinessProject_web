@@ -165,7 +165,7 @@ import com.neuedu.dao.ProductDao;
 import com.neuedu.dao.impl.mybatis.CartMybatisImpl;
 import com.neuedu.dao.impl.mybatis.OrderMybatisImpl;
 import com.neuedu.dao.impl.mybatis.OrderItemMybatisImpl;
-import com.neuedu.dao.impl.mybatis.ProductMybayisImpl;
+import com.neuedu.dao.impl.mybatis.ProductMybatisImpl;
 import com.neuedu.entity.*;
 import com.neuedu.service.OrderService;
 import com.neuedu.utils.Utils;
@@ -175,7 +175,7 @@ public class OrderServiceImpl implements OrderService {
 	CartDao cartDao=new CartMybatisImpl();
 	OrderDao orderDao=new OrderMybatisImpl();
 	OrderItemDao orderItemDao=new OrderItemMybatisImpl();
-	ProductDao productDao=new ProductMybayisImpl();
+	ProductDao productDao=new ProductMybatisImpl();
 	@Override
 	public boolean createOrder(UserOrder userOrder) {return  false;}
 		// TODO Auto-generated method stub

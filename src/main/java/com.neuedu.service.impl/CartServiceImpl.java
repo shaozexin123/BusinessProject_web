@@ -7,11 +7,25 @@ import com.neuedu.dao.impl.mybatis.CartMybatisImpl;
 import com.neuedu.entity.Cart;
 import com.neuedu.entity.PageMode;
 import com.neuedu.service.CartService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
+@Service("cartService")
+@Scope("singleton")
 public class CartServiceImpl implements CartService {
 
-	CartDao cartDao=new CartMybatisImpl();
-	
+
+
+	@Resource(name="cartMybatisImpl")
+	CartDao cartDao;
+
+	public void setCartDao(CartDao cartDao) {
+		this.cartDao = cartDao;
+	}
+
 	@Override
 	public boolean addCart(Cart cart) {
 		// TODO Auto-generated method stub

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--基于xml配置开始-->
+    <!--购物车-->
+    <!--<bean id="cartService" class="com.neuedu.service.impl.CartServiceImpl">-->
+        <!--<property name="cartDao" ref="cartDao"></property>-->
+    <!--</bean>-->
+    <!--<bean id="cartDao" class="com.neuedu.dao.impl.mybatis.CartMybatisImpl"></bean>-->
+    <!--类别-->
+    <!--<bean id="cService" class="com.neuedu.service.impl.CateGoryServiceImpl">-->
+        <!--<property name="categoryDao" ref="categoryDao"></property>-->
+    <!--</bean>-->
+    <!--<bean id="categoryDao" class="com.neuedu.dao.impl.mybatis.CategoryMybatisImpl"></bean>-->
+    <!--登录-->
+    <!--<bean id="loginService" class="com.neuedu.service.impl.LoginServiceImpl">-->
+        <!--&lt;!&ndash;<property name="loginDao" ref="loginDao"></property>&ndash;&gt;-->
+    <!--</bean>-->
+    <!--<bean id="loginDao" class="com.neuedu.dao.impl.mybatis.LoginMybatisImpl"></bean>-->
+    <!--商品-->
+    <!--<bean id="pService" class="com.neuedu.service.impl.ProductServiceImpl">-->
+        <!--&lt;!&ndash;<property name="productDao" ref="productDao"></property>&ndash;&gt;-->
+    <!--</bean>-->
+    <!--<bean id="productDao" class="com.neuedu.dao.impl.mybatis.ProductMybatisImpl"></bean>-->
+    <!--基于xml配置结束-->
+    <!-- 开启注解 -->
+
+
+    <!--  扫描基础包下的类-->
+    <context:component-scan base-package="com.neuedu"/>
+    <!-- 加载属性文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- c3p0带有连接池的数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${driver}"></property>
+        <property name="jdbcUrl" value="${url}"></property>
+        <property name="user" value="${jdbc.username}"></property>
+        <property name="password" value="${password}"></property>
+    </bean>
+
+    <!-- 注入SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!-- 加载com.neusoft.cofig包及其子包下的*Mapper.xml -->
+        <property name="mapperLocations" value="classpath:com/neuedu/map/*Mapper.xml" />
+        <!--加载mybatis全局的配置文件  -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+
+    <!-- sqlsessionTemplate -->
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+

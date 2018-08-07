@@ -6,11 +6,13 @@ import com.neuedu.dao.impl.mybatis.LoginMybatisImpl;
 import com.neuedu.entity.Account;
 import com.neuedu.service.ILoginService;
 import com.neuedu.utils.MD5Utils;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LoginServiceImpl implements ILoginService{
 	ILoginDao loginDao=new LoginMybatisImpl();
-	
-	
+
+
 	public Account  doLogin(String  username,String password) {
 		//进行登录的业务逻辑处理
 		 //LoginDao loginDao=new LoginDao(); 

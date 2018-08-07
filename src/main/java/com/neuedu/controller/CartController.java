@@ -3,6 +3,7 @@ package com.neuedu.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,12 +19,30 @@ import com.neuedu.service.CartService;
 import com.neuedu.service.ProductService;
 import com.neuedu.service.impl.CartServiceImpl;
 import com.neuedu.service.impl.ProductServiceImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 @WebServlet("/view/cart")
 public class CartController extends HttpServlet {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8574912870396136419L;
+
+//	public  void setCartService(CartService cartService){
+//		this.cartService=cartService;
+//	}
+	@Resource(name = "cartService")
+    CartService cartService;
+	@Override
+	public void init() throws ServletException {
+		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+		cartService=(CartService)webApplicationContext.getBean("cartService");
+	}
+
+
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -58,7 +77,7 @@ public class CartController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(req, resp);
 	}
-  CartService cartService=new CartServiceImpl();
+
 	
 	/**
 	 * 添加购物车
@@ -162,15 +181,15 @@ public class CartController extends HttpServlet {
 		int _pageNum=5;
 		try {
 //			分页显示
-//			if(pageno!=null&pageNum!=null) {
-//			_pageno=Integer.parseInt(pageno);
-//			_pageNum=Integer.parseInt(pageNum);
-//			}
-//			PageMode<Cart> pagemode=cartService.findCartByPage(_pageno,_pageNum);
-//			req.setAttribute("pagemode", pagemode);
-            List<Cart> carts=cartService.findAllCart();
+			if(pageno!=null&pageNum!=null) {
+			_pageno=Integer.parseInt(pageno);
+			_pageNum=Integer.parseInt(pageNum);
+			}
+			PageMode<Cart> pagemode=cartService.findCartByPage(_pageno,_pageNum);
+			req.setAttribute("pagemode", pagemode);
+//            List<Cart> carts=cartService.findAllCart();
 			Gson gson=new Gson();
-			String json=gson.toJson(carts);
+			String json=gson.toJson(pagemode);
 			resp.getWriter().append("success_jsonpCallback("+json+")");
 
 //			System.out.println(json);
@@ -213,16 +232,14 @@ public class CartController extends HttpServlet {
 //			price=Double.parseDouble(req.getParameter("price"));
 			id=Integer.parseInt(req.getParameter("id"));
 			productNum=Integer.parseInt(req.getParameter("productNum"));
-//			productid=Integer.parseInt(req.getParameter("productid"));
 			ProductController pc=new ProductController();
-			Product product=pc.findProductById(id);
+//			Product product=pc.findProductById(id);
 			productprice=Double.parseDouble(req.getParameter("productprice"));
 			System.out.println("productNum="+productNum+"productprice="+req.getParameter("productprice"));
 			totalprice=productprice*productNum;
 			System.out.println("totalprice======"+totalprice);
 			cart.setId(id);
-			cart.setProduct(product);
-//			cart.setProductid(productid);
+//			cart.setProduct(product);
 			cart.setProductNum(productNum);
 			cart.setTotalprice(totalprice);
 //			product.setDesc(desc);
@@ -292,4 +309,5 @@ public class CartController extends HttpServlet {
 	    	}
 	    	
 	    }
+
 }

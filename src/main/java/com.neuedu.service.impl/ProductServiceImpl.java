@@ -3,17 +3,26 @@ package com.neuedu.service.impl;
 import java.util.List;
 
 import com.neuedu.dao.ProductDao;
-import com.neuedu.dao.impl.jdbc.ProductDaoImpl;
-import com.neuedu.dao.impl.mybatis.ProductMybayisImpl;
+import com.neuedu.dao.impl.mybatis.ProductMybatisImpl;
 import com.neuedu.entity.PageMode;
 import com.neuedu.entity.Product;
 import com.neuedu.service.ProductService;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
+@Service("pService")
+@Scope("singleton")
 public class ProductServiceImpl implements ProductService {
+	@Resource(name="productMybatisImpl")
+	
+	ProductDao productDao;
 
-	
-	ProductDao productDao=new ProductMybayisImpl();
-	
+	public void setProductDao(ProductDao productDao) {
+		this.productDao = productDao;
+	}
+
 	@Override
 	public boolean addProduct(Product product) {
 		// TODO Auto-generated method stub
@@ -42,6 +51,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product findProductById(int id) {
 		// TODO Auto-generated method stub
+
 		return productDao.findById(id);
 	}
 
@@ -52,5 +62,5 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
-	
+
 }

@@ -1,19 +1,20 @@
 package com.neuedu.dao.impl.mybatis;
 
 import com.alibaba.fastjson.JSONArray;
+import com.neuedu.controller.ProductController;
 import com.neuedu.dao.ProductDao;
 import com.neuedu.entity.PageMode;
 import com.neuedu.entity.Product;
 import com.neuedu.utils.MyBatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-public class ProductMybayisImpl implements ProductDao {
+@Repository
+public class ProductMybatisImpl implements ProductDao {
     @Override
     public boolean addProduct(Product product) {
         SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
@@ -41,7 +42,7 @@ public class ProductMybayisImpl implements ProductDao {
 
 
     public String findAllJson() {
-        ProductMybayisImpl pm=new ProductMybayisImpl();
+        ProductMybatisImpl pm=new ProductMybatisImpl();
         List<Product> users = pm.findAll();
         String json = JSONArray.toJSONString(users);
         return json;
@@ -98,7 +99,7 @@ public class ProductMybayisImpl implements ProductDao {
         return  pageMode;
     }
     public static  void  main(String[] args){
-        ProductMybayisImpl pm=new ProductMybayisImpl();
+        ProductMybatisImpl pm=new ProductMybatisImpl();
 //        Product p=new Product();
         Product p=pm.findById(23);
         p.setCategoryid(1);
@@ -109,6 +110,7 @@ public class ProductMybayisImpl implements ProductDao {
         p.setStock(4);
         p.setPrice(1.0);
 //        System.out.println(pm.addProduct(p));
-        System.out.println(pm.updateProduct(p));
+//        System.out.println(pm.findById(1));
+
     }
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import com.neuedu.entity.Cart;
 import com.neuedu.entity.PageMode;
 import com.neuedu.entity.Product;
+import org.springframework.stereotype.Service;
+
 
 public interface CartService {
 

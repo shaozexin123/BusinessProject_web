@@ -15,15 +15,27 @@ import com.neuedu.entity.PageMode;
 import com.neuedu.entity.Product;
 import com.neuedu.service.ProductService;
 import com.neuedu.service.impl.ProductServiceImpl;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 @WebServlet("/view/product")
 public class ProductController extends HttpServlet{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -895564076582129225L;
-	ProductService  pService=new ProductServiceImpl();
-			
-	
+	ProductService  pService;
+
+//	public void setpService(ProductService pService) {
+//		this.pService = pService;
+//	}
+
+	@Override
+	public void init() throws ServletException {
+		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+		pService=(ProductService)webApplicationContext.getBean("pService");
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -217,7 +229,7 @@ public class ProductController extends HttpServlet{
     	
     }
     public Product findProductById(int id) {
-    	return pService.findProductById(id);
+    	return  pService.findProductById(id);
     }
     private void findById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -246,4 +258,6 @@ public class ProductController extends HttpServlet{
         resp.getWriter().print(json);
         System.out.println(json);
 	}
+
+
 }

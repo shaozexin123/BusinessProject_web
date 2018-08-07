@@ -6,11 +6,12 @@ import com.neuedu.entity.PageMode;
 import com.neuedu.utils.MyBatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Repository
 public class CategoryMybatisImpl implements CateGoryDao {
     @Override
     public boolean addCateGory(CateGory category) {
