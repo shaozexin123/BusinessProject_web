@@ -15,15 +15,19 @@ import com.neuedu.entity.PageMode;
 import com.neuedu.entity.Product;
 import com.neuedu.service.ProductService;
 import com.neuedu.service.impl.ProductServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-
+@Controller
 @WebServlet("/view/product")
 public class ProductController extends HttpServlet{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -895564076582129225L;
+	@Autowired
 	ProductService  pService;
 
 //	public void setpService(ProductService pService) {
@@ -32,8 +36,10 @@ public class ProductController extends HttpServlet{
 
 	@Override
 	public void init() throws ServletException {
-		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
-		pService=(ProductService)webApplicationContext.getBean("pService");
+//		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+//		pService=(ProductService)webApplicationContext.getBean("pService");
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,this.getServletContext());
+
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package com.neuedu.dao.impl.mybatis;
 
 import com.alibaba.fastjson.JSONArray;
-import com.neuedu.controller.ProductController;
 import com.neuedu.dao.ProductDao;
 import com.neuedu.entity.PageMode;
 import com.neuedu.entity.Product;
@@ -10,19 +9,23 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Repository
 public class ProductMybatisImpl implements ProductDao {
+    @Resource(name="sqlSession")
+    private SqlSession sqlSession;
     @Override
     public boolean addProduct(Product product) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
 //        Map<String,Integer> map=new HashMap<String,Integer>();
 //        map.put("accountid",_accountid);
         int i=sqlSession.insert("com.neuedu.entity.Product.addProduct",product);
-        sqlSession.commit();
+//        sqlSession.commit();
         if(i==1){
             return true;}
         return false;
@@ -30,13 +33,13 @@ public class ProductMybatisImpl implements ProductDao {
 
     @Override
     public List<Product> findAll() {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
 //        Map<String,Integer> map=new HashMap<String,Integer>();
 //        map.put("accountid",_accountid);
         List<Product> products=sqlSession.selectList("com.neuedu.entity.Product.findAll");
 
-        MyBatisUtils.close(sqlSession);
+//        MyBatisUtils.close(sqlSession);
         return products;
     }
 
@@ -50,12 +53,12 @@ public class ProductMybatisImpl implements ProductDao {
 
     @Override
     public boolean updateProduct(Product product) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
 
         int o=sqlSession.update("com.neuedu.entity.Product.updateProduct",product);
-        sqlSession.commit();
-        MyBatisUtils.close(sqlSession);
+//        sqlSession.commit();
+//        MyBatisUtils.close(sqlSession);
         if(o==1){
             return true;}
         return false;
@@ -63,11 +66,11 @@ public class ProductMybatisImpl implements ProductDao {
 
     @Override
     public boolean deleteProduct(int id) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
         int o=sqlSession.delete("com.neuedu.entity.Product.deleteProduct",id);
-        sqlSession.commit();
-        MyBatisUtils.close(sqlSession);
+//        sqlSession.commit();
+//        MyBatisUtils.close(sqlSession);
         if(o==1){
             return true;}
         return false;
@@ -75,19 +78,19 @@ public class ProductMybatisImpl implements ProductDao {
 
     @Override
     public Product findById(int id) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
 
         Product product=sqlSession.selectOne("com.neuedu.entity.Product.findById",id);
 
-        MyBatisUtils.close(sqlSession);
+//        MyBatisUtils.close(sqlSession);
         return product;
     }
 
     @Override
     public PageMode<Product> findProductByPage(int pageno, int pagesize) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
         int totalcount=sqlSession.selectOne("com.neuedu.entity.Product.findTotalCount");
         Map<String,Object> map=new HashMap<String, Object>();
         map.put("offset",(pageno-1)*pagesize);

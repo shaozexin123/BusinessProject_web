@@ -10,20 +10,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--基于xml配置开始-->
     <!--购物车-->
     <!--<bean id="cartService" class="com.neuedu.service.impl.CartServiceImpl">-->
@@ -77,6 +63,7 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
+    <bean id="loginService" class="com.neuedu.service.impl.LoginServiceImpl"></bean>
 </beans>
 
 

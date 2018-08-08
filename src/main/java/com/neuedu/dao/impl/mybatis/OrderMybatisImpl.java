@@ -6,18 +6,22 @@ import com.neuedu.entity.UserOrder;
 import com.neuedu.utils.MyBatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Repository
 public class OrderMybatisImpl implements OrderDao {
+    @Resource(name="sqlSession")
+    private SqlSession sqlSession;
     @Override
     public boolean createOrder(UserOrder userOrder) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
         int i=sqlSession.insert("com.neuedu.entity.UserOrder.createOrder",userOrder);
-        sqlSession.commit();
+//        sqlSession.commit();
         if(i==1){
             return true;}
         return false;
@@ -30,8 +34,8 @@ public class OrderMybatisImpl implements OrderDao {
 
     @Override
     public PageMode<UserOrder> findUserOrderByPage(int pageno, int pagesize) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
         int totalcount=sqlSession.selectOne("com.neuedu.entity.UserOrder.findTotalCount");
         Map<String,Object> map=new HashMap<String, Object>();
         map.put("offset",(pageno-1)*pagesize);
@@ -45,11 +49,11 @@ public class OrderMybatisImpl implements OrderDao {
 
     @Override
     public boolean deleteUserOrder(int id) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
         int o=sqlSession.delete("com.neuedu.entity.UserOrder.deleteUserOrder",id);
-        sqlSession.commit();
-        MyBatisUtils.close(sqlSession);
+//        sqlSession.commit();
+//        MyBatisUtils.close(sqlSession);
         if(o==1){
             return true;}
         return false;
@@ -57,12 +61,12 @@ public class OrderMybatisImpl implements OrderDao {
 
     @Override
     public UserOrder findById(int id) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
 
         UserOrder order=sqlSession.selectOne("com.neuedu.entity.UserOrder.findById",id);
 
-        MyBatisUtils.close(sqlSession);
+//        MyBatisUtils.close(sqlSession);
         return order;
     }
 

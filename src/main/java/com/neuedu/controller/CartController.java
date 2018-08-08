@@ -19,12 +19,16 @@ import com.neuedu.service.CartService;
 import com.neuedu.service.ProductService;
 import com.neuedu.service.impl.CartServiceImpl;
 import com.neuedu.service.impl.ProductServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 @WebServlet("/view/cart")
+@Controller
 public class CartController extends HttpServlet {
 	/**
 	 * 
@@ -34,12 +38,13 @@ public class CartController extends HttpServlet {
 //	public  void setCartService(CartService cartService){
 //		this.cartService=cartService;
 //	}
-	@Resource(name = "cartService")
+	@Autowired
     CartService cartService;
 	@Override
 	public void init() throws ServletException {
-		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
-		cartService=(CartService)webApplicationContext.getBean("cartService");
+//		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+//		cartService=(CartService)webApplicationContext.getBean("cartService");
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,this.getServletContext());
 	}
 
 

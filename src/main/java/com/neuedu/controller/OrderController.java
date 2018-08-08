@@ -16,8 +16,14 @@ import com.neuedu.entity.CateGory;
 import com.neuedu.entity.PageMode;
 import com.neuedu.entity.Product;
 import com.neuedu.entity.UserOrder;
+import com.neuedu.service.CateGoryService;
 import com.neuedu.service.OrderService;
 import com.neuedu.service.impl.OrderServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 @WebServlet("/view/order")
 public class OrderController extends HttpServlet{
 
@@ -25,7 +31,15 @@ public class OrderController extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1349467707596946732L;
-	OrderService orderService=new OrderServiceImpl();
+	@Autowired
+	OrderService orderService;
+	@Override
+	public void init() throws ServletException {
+//		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+//		orderService=(OrderService)webApplicationContext.getBean("orderService");
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,this.getServletContext());
+
+	}
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//req.setCharacterEncoding("UTF-8");

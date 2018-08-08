@@ -15,7 +15,9 @@ import com.neuedu.service.ILoginService;
 import com.neuedu.service.impl.LoginServiceImpl;
 import com.neuedu.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
@@ -29,16 +31,19 @@ public class LoginController extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 2127867611341493332L;
 	@Autowired
+//			@Qualifier("loginService")
 	ILoginService loginService;
 	@Override
 	public void init() throws ServletException {
-		/*WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
-		loginService=(ILoginService)webApplicationContext.getBean("loginService");*/
+//		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+//		loginService=(ILoginService)webApplicationContext.getBean("loginService");
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,this.getServletContext());
+
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		System.out.println("++++++++++++++++++++++++++++++++++++");
 		
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");

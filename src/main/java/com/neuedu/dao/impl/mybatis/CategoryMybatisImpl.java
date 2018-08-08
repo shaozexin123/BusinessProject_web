@@ -8,17 +8,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Repository
 public class CategoryMybatisImpl implements CateGoryDao {
+    @Resource(name="sqlSession")
+    private SqlSession sqlSession;
     @Override
     public boolean addCateGory(CateGory category) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
         int i=sqlSession.insert("com.neuedu.entity.CateGory.addCateGory",category);
-        sqlSession.commit();
+//        sqlSession.commit();
         if(i==1){
             return true;}
         return false;
@@ -31,11 +35,11 @@ public class CategoryMybatisImpl implements CateGoryDao {
 
     @Override
     public boolean updateCateGory(CateGory category) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
         int o=sqlSession.update("com.neuedu.entity.CateGory.updateCateGory",category);
-        sqlSession.commit();
-        MyBatisUtils.close(sqlSession);
+//        sqlSession.commit();
+//        MyBatisUtils.close(sqlSession);
         if(o==1){
             return true;}
         return false;
@@ -43,11 +47,11 @@ public class CategoryMybatisImpl implements CateGoryDao {
 
     @Override
     public boolean deleteCateGory(int id) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
         int o=sqlSession.delete("com.neuedu.entity.CateGory.deleteCateGory",id);
-        sqlSession.commit();
-        MyBatisUtils.close(sqlSession);
+//        sqlSession.commit();
+//        MyBatisUtils.close(sqlSession);
         if(o==1){
             return true;}
         return false;
@@ -55,19 +59,19 @@ public class CategoryMybatisImpl implements CateGoryDao {
 
     @Override
     public CateGory findById(int id) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
 
         CateGory cateGory=sqlSession.selectOne("com.neuedu.entity.CateGory.findById",id);
 
-        MyBatisUtils.close(sqlSession);
+//        MyBatisUtils.close(sqlSession);
         return cateGory;
     }
 
     @Override
     public PageMode<CateGory> findCateGoryByPage(int pageno, int pagesize) {
-        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
-        SqlSession sqlSession=factory.openSession();
+//        SqlSessionFactory factory= MyBatisUtils.getSqlSessionFactory();
+//        SqlSession sqlSession=factory.openSession();
         int totalcount=sqlSession.selectOne("com.neuedu.entity.CateGory.findTotalCount");
         Map<String,Object> map=new HashMap<String, Object>();
         map.put("offset",(pageno-1)*pagesize);

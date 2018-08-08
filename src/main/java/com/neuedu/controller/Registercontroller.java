@@ -4,17 +4,15 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.neuedu.entity.Account;
-import com.neuedu.entity.Product;
 import com.neuedu.service.ILoginService;
 import com.neuedu.service.impl.LoginServiceImpl;
-import com.neuedu.utils.MD5Utils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 @WebServlet("/register.do")
 public class Registercontroller extends HttpServlet {
@@ -23,11 +21,19 @@ public class Registercontroller extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1172271472291089049L;
+	@Autowired
+	ILoginService loginService ;
+	@Override
+	public void init() throws ServletException {
+
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,this.getServletContext());
+
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		resp.setContentType("text/html;charset=UTF-8");
-		ILoginService loginService = new LoginServiceImpl();
 		Account acc=new Account();
 		String username= req.getParameter("username");
 		String password= req.getParameter("password");

@@ -7,7 +7,6 @@ import com.neuedu.entity.PageMode;
 import com.neuedu.utils.MyBatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -16,14 +15,14 @@ import java.util.List;
 import java.util.Map;
 
 //@Resource(name="cartMybatisImpl")
-@Repository("cartMybatisImpl")
+@Repository
 public class CartMybatisImpl implements CartDao {
     @Resource(name="sqlSession")
     private SqlSession sqlSession;
 
     @Override
     public boolean addCart(Cart cart) {
-        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
+//        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
 //        SqlSession sqlSession=factory.openSession();
 //        Map<String,Integer> map=new HashMap<String,Integer>();
 //        map.put("accountid",_accountid);
@@ -37,7 +36,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public boolean deleteCart(int id) {
-        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
+//        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
 //        SqlSession sqlSession=factory.openSession();
         int o = sqlSession.delete("com.neuedu.entity.Cart.delectCart", id);
 //        sqlSession.commit();
@@ -50,7 +49,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public boolean updataeCart(Cart cart) {
-        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
+//        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
 //        SqlSession sqlSession=factory.openSession();
         int o = sqlSession.update("com.neuedu.entity.Cart.updataeCart", cart);
 //        sqlSession.commit();
@@ -63,7 +62,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public boolean updateCart(int id, int num) {
-        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
+//        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
 //        SqlSession sqlSession=factory.openSession();
         Map<String, Integer> map = new HashMap<String, Integer>();
         map.put("productNum", num);
@@ -79,7 +78,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public List<Cart> findAllCart() {
-        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
+//        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
 //        SqlSession sqlSession=factory.openSession();
 //        Map<String,Integer> map=new HashMap<String,Integer>();
 //        map.put("accountid",_accountid);
@@ -102,7 +101,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public Cart findById(int id) {
-        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
+//        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
 //        SqlSession sqlSession=factory.openSession();
 
         Cart cart = sqlSession.selectOne("com.neuedu.entity.Cart.findById", id);
@@ -113,7 +112,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public PageMode<Cart> findCartByPage(int pageno, int pagesize) {
-        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
+//        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
 //        SqlSession sqlSession=factory.openSession();
         int totalcount = sqlSession.selectOne("com.neuedu.entity.Cart.findTotalCount");
         Map<String, Object> map = new HashMap<String, Object>();
@@ -128,9 +127,9 @@ public class CartMybatisImpl implements CartDao {
 
     public static void main(String[] args) {
         CartMybatisImpl c = new CartMybatisImpl();
-        Cart cart = c.findById(26);
-        cart.setProductNum(2);
-        cart.setTotalprice(20.0);
+//        Cart cart = c.findById(26);
+//        cart.setProductNum(2);
+//        cart.setTotalprice(20.0);
         System.out.println(c.findAllCart());
         String json = JSONArray.toJSONString(c.findCartByPage(1, 4));
         System.out.println(json);
