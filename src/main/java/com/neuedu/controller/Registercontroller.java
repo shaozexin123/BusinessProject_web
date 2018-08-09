@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.neuedu.entity.Account;
 import com.neuedu.service.ILoginService;
 import com.neuedu.service.impl.LoginServiceImpl;
+import com.neuedu.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -50,7 +51,7 @@ public class Registercontroller extends HttpServlet {
 //			product.setRule(rule);
 //			product.setStock(stock);
 			acc.setIp(ip);
-			acc.setPassword(password);
+			acc.setPassword(MD5Utils.GetMD5Code(password));
 			acc.setUsername(username);
 			acc.setSex(sex);
 			result= loginService.addAccount(acc);

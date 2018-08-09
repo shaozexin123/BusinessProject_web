@@ -28,4 +28,12 @@
         <!--left join userorderitem ui-->
         <!--on ui.order_no=uo.order_no-->
     <!--</select>-->
+    <!--<select id="findByorder_no" parameterType="long" resultMap="orderitems_resultmap">-->
+        <!--select uo.order_no,uo.user_id,uo.shipping_id,uo.payment,uo.payment_type,uo.status,-->
+        <!--uoi.productid,uoi.product_name,uoi.current_unit_price,uoi.total_price,uoi.quantity-->
+        <!--from userorder uo-->
+        <!--left  join userorderitem uoi-->
+        <!--on  uo.order_no=uoi.order_no-->
+        <!--WHERE  uo.order_no=#{order_no}-->
+    <!--</select>-->
 </mapper>

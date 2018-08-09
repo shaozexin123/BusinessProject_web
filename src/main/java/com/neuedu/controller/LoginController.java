@@ -48,6 +48,7 @@ public class LoginController extends HttpServlet {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		Account acc = loginService.doLogin(username, MD5Utils.GetMD5Code(password));
+		System.out.println(acc);
 		if (acc != null) {
 			// µÇÂ¼³É¹¦
 			Cookie un_cookis = new Cookie("username", username);

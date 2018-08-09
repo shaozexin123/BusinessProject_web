@@ -4,6 +4,7 @@ import com.neuedu.entity.Account;
 
 //�ӿڸ���ԭ��
 public interface ILoginDao {
+    void updataAccount(String username,double money);
 
 	public  Account   doLogin(String _username, String _password);
 		

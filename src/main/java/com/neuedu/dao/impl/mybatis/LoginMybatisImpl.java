@@ -21,6 +21,17 @@ public class LoginMybatisImpl implements ILoginDao {
     private SqlSession sqlSession;
 
     @Override
+    public void updataAccount(String username, double money) {
+        Map<Object,Object> map=new HashMap<Object,Object>();
+        map.put("username",username);
+        map.put("money", money);
+      sqlSession.update("com.neuedu.entity.Account.updatemoney",map);
+//        ILoginDao l=sqlSession.getMapper(ILoginDao.class);
+//        l.updataAccount(username,money);
+
+    }
+
+    @Override
     public Account doLogin(String _username, String _password) {
 //        1读取配置文件
        String resource="spring-config.xml";

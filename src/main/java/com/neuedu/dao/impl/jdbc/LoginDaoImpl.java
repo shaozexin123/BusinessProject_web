@@ -13,6 +13,11 @@ import java.sql.SQLException;
 public class LoginDaoImpl implements ILoginDao {
 
 	@Override
+	public void updataAccount(String username, double money) {
+
+	}
+
+	@Override
 	public Account doLogin(String _username, String _password) {
 		// TODO Auto-generated method stub
 		

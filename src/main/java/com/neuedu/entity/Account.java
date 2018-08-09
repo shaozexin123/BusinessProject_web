@@ -8,10 +8,26 @@ public class  Account{
 	public  String  password;
 	public  String  ip;
 	public  String  sex;
-	
-	
-	
-    public Account(int accountId, String username, String password, String ip, String sex) {
+	private  double money;
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
+	public Account(String username, String password, String ip, String sex, double money) {
+
+		this.username = username;
+		this.password = password;
+		this.ip = ip;
+		this.sex = sex;
+		this.money = money;
+	}
+
+	public Account(int accountId, String username, String password, String ip, String sex) {
 		super();
 		this.accountId = accountId;
 		this.username = username;

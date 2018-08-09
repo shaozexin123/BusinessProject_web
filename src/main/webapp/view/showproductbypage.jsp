@@ -54,7 +54,7 @@
             <td>${product.stock}</td>
 			<td>${product.categoryid}</td>
             <td><a href="product?operation=4&id=${product.id}">删除</a> <a href="product?operation=5&id=${product.id}">修改</a> 
-            <%--<a href="cart?operation=6&id=${product.id}" >添加到购物车</a></td>--%>
+            <a href="cart?operation=6&id=${product.id}" >添加到购物车</a></td>
 		</tr>
 		</c:forEach>
 	</table>

@@ -101,6 +101,11 @@
       <artifactId>spring-context</artifactId>
       <version>4.2.2.RELEASE</version>
     </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-aop</artifactId>
+          <version>4.2.2.RELEASE</version>
+      </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
@@ -115,6 +120,12 @@
           <groupId>org.springframework</groupId>
           <artifactId>spring-jdbc</artifactId>
           <version>4.2.2.RELEASE</version>
+      </dependency>
+      <!-- CGLIB依赖 -->
+      <dependency>
+          <groupId>org.aspectj</groupId>
+          <artifactId>aspectjweaver</artifactId>
+          <version>1.8.6</version>
       </dependency>
       <!--Spring-Mybatis-->
       <dependency>

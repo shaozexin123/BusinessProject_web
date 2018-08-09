@@ -72,7 +72,9 @@ public class OrderMybatisImpl implements OrderDao {
 
     @Override
     public UserOrder findByorder_no(long order_no) {
-        return null;
+        UserOrder UserOrder=   sqlSession.selectOne
+                ("com.neuedu.entity.UserOrder.findByorder_no",order_no);
+        return UserOrder;
     }
 
     public static void main(String[] args) {

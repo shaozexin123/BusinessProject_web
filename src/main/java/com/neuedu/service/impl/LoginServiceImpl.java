@@ -19,7 +19,7 @@ public class LoginServiceImpl implements ILoginService {
 		//进行登录的业务逻辑处理
 		 //LoginDao loginDao=new LoginDao(); 
 		//LoginDaoMysql loginDao=new LoginDaoMysql();
-		
+		System.out.println(username+password);
 		return loginDao.doLogin(username,password);
 		
 		

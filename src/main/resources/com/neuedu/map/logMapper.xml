@@ -1,0 +1,9 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neuedu.entity.Logrecord">
+    <insert id="add"  parameterType="com.neuedu.entity.Logrecord"  statementType="PREPARED" useGeneratedKeys="true">
+        insert into logrecord(user_id,operation,creat_time) values (#{user_id},#{operation},now())
+    </insert>
+</mapper>
